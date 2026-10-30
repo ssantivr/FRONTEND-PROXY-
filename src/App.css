@@ -377,3 +377,59 @@ button:disabled {
   background: var(--problem);
 }
 
+/* Layout */
+
+.app {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) 48px;
+}
+
+.hero p {
+  max-width: 60ch;
+  margin-top: var(--space-2);
+  color: var(--text-muted);
+}
+
+.error-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--problem);
+  border-radius: var(--radius);
+  background: var(--problem-soft);
+  color: var(--problem-strong);
+}
+
+.error-banner .quiet {
+  border-color: currentColor;
+  color: inherit;
+}
+
+.panel {
+  padding: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.panel-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.panel-heading p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
