@@ -573,3 +573,196 @@ button:disabled {
 .skeleton-line { width: 72px; height: 1em; }
 .skeleton-row { display: block; width: 100%; height: 1.25em; }
 
+/* Intercept map */
+
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.map {
+  position: relative;
+  min-height: 256px;
+}
+
+.map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map path {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-opacity: 0.55;
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+  vector-effect: non-scaling-stroke;
+  transition: stroke var(--fast), stroke-opacity var(--fast);
+}
+
+.map-busy path {
+  stroke: var(--accent);
+  stroke-opacity: 1;
+  animation: wires-flow 0.6s linear infinite;
+}
+
+.node, .gate, .packet, .lane-label {
+  position: absolute;
+}
+
+.client-node {
+  top: 50%;
+  left: 8%;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  font-family: var(--mono);
+  font-size: var(--text-sm);
+  transform: translate(-50%, -50%);
+}
+
+.gate {
+  top: 8%;
+  bottom: 8%;
+  left: 46%;
+  width: 20px;
+  transform: translateX(-50%);
+}
+
+.gate-bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(-45deg, var(--accent) 0 12px, var(--hazard-dark) 12px 24px);
+}
+
+.gate-label {
+  position: absolute;
+  top: 0;
+  left: 28px;
+  padding: 0 var(--space-1);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.lane-label {
+  right: 0;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: var(--text-sm);
+  transform: translateY(calc(-100% - 2px));
+}
+
+.packet {
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.packet.route-passed { background: var(--healthy); }
+.packet.route-cached { background: var(--accent); }
+.packet.route-blocked { background: var(--idle); }
+.packet.route-failed { background: var(--problem); }
+
+.packet-1 { transform: scale(0.75); filter: opacity(0.5); }
+.packet-2 { transform: scale(0.55); filter: opacity(0.3); }
+.packet-3 { transform: scale(0.35); filter: opacity(0.18); }
+
+.service-cards {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  overflow: hidden;
+}
+
+.card-problem {
+  border: 2px solid var(--problem);
+  background: var(--problem-soft);
+}
+
+.card-title {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card-metrics {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.card-metrics dt {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.card-metrics dd {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hit-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: hit-flash 250ms ease-out both;
+}
+
+.hit-flash.route-passed { background: var(--healthy); }
+.hit-flash.route-failed { background: var(--problem); }
+
+.route-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0 var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.route-legend small {
+  display: block;
+  margin-left: 18px;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.route-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+}
+
+.route-dot.route-passed { background: var(--healthy); }
+.route-dot.route-cached { background: var(--accent); }
+.route-dot.route-blocked { background: var(--idle); }
+.route-dot.route-failed { background: var(--problem); }
+
