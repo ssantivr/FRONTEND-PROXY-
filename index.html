@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkpoint | Live microservices proxy observability</title>
+    <meta name="description" content="Live dashboard for a Logging Proxy in front of three microservices: latency, success rate, errors and every intercepted call." />
+    <link rel="canonical" href="https://proxy-checkpoint.vercel.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://proxy-checkpoint.vercel.app/" />
+    <meta property="og:title" content="Checkpoint | Proxy observability" />
+    <meta property="og:description" content="See what a Logging Proxy lets through, answers itself, or turns away, in real time." />
+    <meta property="og:image" content="https://proxy-checkpoint.vercel.app/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Checkpoint | Proxy observability" />
+    <meta name="twitter:description" content="See what a Logging Proxy lets through, answers itself, or turns away, in real time." />
+    <meta name="twitter:image" content="https://proxy-checkpoint.vercel.app/og.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <script>
+      // Applies the theme before the first paint to avoid a flash
+      (function () {
+        var saved = null
+        try { saved = localStorage.getItem('theme') } catch (e) {}
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light')
+      })()
+    </script>
+    <style>
+      /* First paint of the public text, replaced when React mounts */
+      html { background: #f4f2ec; color: #1d1c18; }
+      html[data-theme='dark'] { background: #131311; color: #f1efe7; }
+      .shell { max-width: 1216px; margin: 0 auto; padding: 88px 16px 0; font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif; }
+      .shell h1 { margin: 0; font-size: 1.75rem; line-height: 1.2; }
+      .shell p { max-width: 60ch; margin: 8px 0 0; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="shell">
+        <h1>Every call stops at the gate.</h1>
+        <p>A Logging Proxy stands in front of three microservices. Watch what it lets through, answers itself, or turns away.</p>
+      </div>
+    </div>
+    <noscript>Checkpoint needs JavaScript to show live data.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
