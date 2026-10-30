@@ -501,3 +501,61 @@ button:disabled {
   height: 256px;
 }
 
+/* States */
+
+.health, .route-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.health .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.health-healthy, .route-tag.route-passed {
+  background: var(--healthy-soft);
+  color: var(--healthy-strong);
+}
+
+.health-degraded {
+  background: var(--degraded-soft);
+  color: var(--degraded-strong);
+}
+
+.health-problem, .route-tag.route-failed {
+  background: var(--problem-soft);
+  color: var(--problem-strong);
+}
+
+.health-idle, .route-tag.route-blocked {
+  background: var(--idle-soft);
+  color: var(--idle-strong);
+}
+
+.route-tag.route-cached {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.no-matches {
+  padding: var(--space-6);
+  color: var(--text-muted);
+  text-align: center;
+}
+
