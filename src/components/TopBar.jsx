@@ -16,6 +16,19 @@ function saveTheme(theme) {
   }
 }
 
+const SESSION_SERIAL = `CP-${crypto.randomUUID().slice(0, 6).toUpperCase()}`
+
+function UtcClock() {
+  const [now, setNow] = useState(() => new Date())
+
+  useEffect(() => {
+    const intervalId = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(intervalId)
+  }, [])
+
+  return <time dateTime={now.toISOString()}>{now.toISOString().slice(11, 19)} UTC</time>
+}
+
 function UpdatedAgo({ lastUpdated }) {
   const [now, setNow] = useState(() => Date.now())
 
@@ -26,7 +39,7 @@ function UpdatedAgo({ lastUpdated }) {
 
   if (!lastUpdated) return <span className="updated">Connecting...</span>
   const seconds = Math.max(Math.round((now - lastUpdated) / 1000), 0)
-  return <span className="updated">Updated {seconds} s ago</span>
+  return <span className="updated">Last reading {seconds} s ago</span>
 }
 
 function ThemeButton() {
@@ -79,6 +92,7 @@ function TopBar({ lastUpdated, offline, paused, onTogglePause, simulating, onSim
             <a key={section.id} href={`#${section.id}`} onClick={() => setMenuOpen(false)}>{section.label}</a>
           ))}
         </nav>
+        <p className="docket"><span>Session {SESSION_SERIAL}</span><UtcClock /></p>
         <div className="topbar-actions">
           <span className={offline ? 'live live-off' : 'live'} aria-live="off">
             {paused ? 'Paused' : <UpdatedAgo lastUpdated={lastUpdated} />}

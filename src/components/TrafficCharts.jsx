@@ -3,14 +3,14 @@ import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, X
 import { buildBuckets } from '../stats'
 import EmptyState from './EmptyState'
 
-const AXIS_TICK = { fontSize: 14, fill: 'var(--text-muted)' }
-const TOOLTIP_STYLE = { background: 'var(--surface-raised)', border: '1px solid var(--line)', borderRadius: 4, color: 'var(--text)' }
+const AXIS_TICK = { fontSize: 12, fontFamily: 'var(--mono)', fill: 'var(--text-muted)' }
+const TOOLTIP_STYLE = { background: 'var(--surface-raised)', border: '1px solid var(--line)', borderRadius: 0, color: 'var(--text)' }
 const MAX_SAMPLE = 100
 
 function ChartAxes({ unit, domain }) {
   return (
     <>
-      <CartesianGrid stroke="var(--line)" vertical={false} />
+      <CartesianGrid stroke="var(--line)" strokeDasharray="1 4" />
       <XAxis dataKey="time" tick={AXIS_TICK} tickLine={false} axisLine={{ stroke: 'var(--line)' }} minTickGap={32} />
       <YAxis yAxisId="left" unit={unit} width={64} domain={domain} tick={AXIS_TICK} tickLine={false} axisLine={false} />
       <Tooltip contentStyle={TOOLTIP_STYLE} />
@@ -45,7 +45,7 @@ const TrafficCharts = memo(function TrafficCharts({ trends, onSimulate, simulati
   const buckets = useMemo(() => buildBuckets(trends.logs, trends.from, trends.to), [trends])
 
   if (trends.logs.length === 0) {
-    return <EmptyState message="No calls in this time range. Send some through the proxy to see the trends." onSimulate={onSimulate} disabled={simulating} />
+    return <EmptyState message="No records for this period." onSimulate={onSimulate} disabled={simulating} />
   }
   const summary = describe(buckets, trends.totalCalls, Math.min(trends.logs.length, MAX_SAMPLE))
 
@@ -55,7 +55,7 @@ const TrafficCharts = memo(function TrafficCharts({ trends, onSimulate, simulati
         <ChartFigure title="Latency" summary={summary.latency}>
           <LineChart data={buckets} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
             <ChartAxes unit=" ms" />
-            <Line yAxisId="left" dataKey="latency" name="Average latency (ms)" stroke="var(--accent)" strokeWidth={2} dot={{ r: 2 }} connectNulls isAnimationActive={false} />
+            <Line yAxisId="left" type="stepAfter" dataKey="latency" name="Average latency (ms)" stroke="var(--accent-ink)" strokeWidth={1.5} dot={false} connectNulls isAnimationActive={false} />
           </LineChart>
         </ChartFigure>
         <ChartFigure title="Success rate and traffic" summary={summary.success}>
@@ -63,8 +63,8 @@ const TrafficCharts = memo(function TrafficCharts({ trends, onSimulate, simulati
             <ChartAxes unit="%" domain={[0, 100]} />
             <YAxis yAxisId="right" orientation="right" unit=" req/s" width={72} tick={AXIS_TICK} tickLine={false} axisLine={false} />
             <Legend iconType="plainline" />
-            <Line yAxisId="left" dataKey="success" name="Success rate (%)" stroke="var(--accent)" strokeWidth={2} dot={{ r: 2 }} connectNulls isAnimationActive={false} />
-            <Line yAxisId="right" dataKey="rate" name="Traffic (req/s)" stroke="var(--text-muted)" strokeWidth={2} strokeDasharray="4 4" dot={false} isAnimationActive={false} />
+            <Line yAxisId="left" type="stepAfter" dataKey="success" name="Success rate (%)" stroke="var(--accent-ink)" strokeWidth={1.5} dot={false} connectNulls isAnimationActive={false} />
+            <Line yAxisId="right" type="stepAfter" dataKey="rate" name="Traffic (req/s)" stroke="var(--text-muted)" strokeWidth={1} strokeDasharray="2 3" dot={false} isAnimationActive={false} />
           </LineChart>
         </ChartFigure>
       </div>

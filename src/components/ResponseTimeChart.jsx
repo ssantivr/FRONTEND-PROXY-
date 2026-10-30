@@ -3,8 +3,8 @@ import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, X
 import { SERVICES } from '../services'
 
 const CHART_CALLS = 20
-const AXIS_TICK = { fontSize: 14, fill: 'var(--text-muted)' }
-const TOOLTIP_STYLE = { background: 'var(--surface-raised)', border: '1px solid var(--line)', borderRadius: 4, color: 'var(--text)' }
+const AXIS_TICK = { fontSize: 12, fontFamily: 'var(--mono)', fill: 'var(--text-muted)' }
+const TOOLTIP_STYLE = { background: 'var(--surface-raised)', border: '1px solid var(--line)', borderRadius: 0, color: 'var(--text)' }
 
 // Builds one row per call position, with one duration per service (oldest call first)
 function buildChartData(logsByService) {
@@ -37,7 +37,7 @@ const ResponseTimeChart = memo(function ResponseTimeChart({ logsByService }) {
       <div className="chart" role="img" aria-label={summary}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-            <CartesianGrid stroke="var(--line)" vertical={false} />
+            <CartesianGrid stroke="var(--line)" strokeDasharray="1 4" />
             <XAxis dataKey="call" tick={AXIS_TICK} tickLine={false} axisLine={{ stroke: 'var(--line)' }} />
             <YAxis unit=" ms" width={64} tick={AXIS_TICK} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={TOOLTIP_STYLE} labelFormatter={(call) => `Call ${call}`} formatter={(value) => `${value} ms`} />
@@ -45,10 +45,11 @@ const ResponseTimeChart = memo(function ResponseTimeChart({ logsByService }) {
             {SERVICES.map((service) => (
               <Line
                 key={service.id}
+                type="stepAfter"
                 dataKey={service.id}
                 name={service.name}
                 stroke={service.color}
-                strokeWidth={2}
+                strokeWidth={1.5}
                 dot={false}
                 activeDot={{ r: 4, strokeWidth: 0 }}
                 isAnimationActive={false}

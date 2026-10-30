@@ -1,9 +1,7 @@
 import { memo } from 'react'
 import { getServiceHealth } from '../services'
 import AnimatedNumber from './AnimatedNumber'
-import Icon from './Icons'
-
-const HEALTH_ICONS = { healthy: 'check', degraded: 'warning', problem: 'cross', idle: 'minus' }
+import Stamp from './Stamp'
 
 const ServiceCard = memo(function ServiceCard({ name, metrics, hit }) {
   const hasCalls = metrics?.totalCalls > 0
@@ -11,11 +9,11 @@ const ServiceCard = memo(function ServiceCard({ name, metrics, hit }) {
   const placeholder = metrics ? '-' : <span className="skeleton skeleton-line" />
 
   return (
-    <article className={health.state === 'problem' ? 'card card-problem' : 'card'}>
+    <article className={health.state === 'rejected' ? 'card card-problem' : 'card'}>
       {hit && <span key={hit.count} className={`hit-flash route-${hit.route}`} />}
       <div className="card-title">
         <h3>{name}</h3>
-        <span className={`health health-${health.state}`}><Icon name={HEALTH_ICONS[health.state]} /> {health.label}</span>
+        <Stamp state={health.state} label={health.label} />
       </div>
       <dl className="card-metrics">
         <div>

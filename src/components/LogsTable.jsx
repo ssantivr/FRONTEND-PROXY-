@@ -1,7 +1,8 @@
 import { Fragment, useMemo, useState } from 'react'
-import { ROUTES, getRoute } from '../services'
+import { ROUTES, STAMPS, getRoute, getStamp } from '../services'
 import EmptyState from './EmptyState'
 import Icon from './Icons'
+import Stamp from './Stamp'
 
 const DURATION_SCALE_MS = 100
 const SKELETON_ROWS = [0, 1, 2, 3, 4]
@@ -107,8 +108,9 @@ function LogRow({ log, expanded, onToggle }) {
         </span>
       </td>
       <td data-label="Status">
-        <span className={`health health-${log.status === 'SUCCESS' ? 'healthy' : 'problem'}`}>
-          <Icon name={log.status === 'SUCCESS' ? 'check' : 'cross'} /> {log.status}
+        <span className="status-cell">
+          <Stamp state={getStamp(log)} label={STAMPS[getStamp(log)]} />
+          <span className="mono status-text">{log.status}</span>
         </span>
       </td>
       <td data-label="Proxy route"><span className={`route-tag route-${route}`}>{ROUTES[route].label}</span></td>
@@ -144,7 +146,7 @@ function LogsTable({ logPage, page, filters, loading, onPageChange, onSimulate, 
   }
 
   if (!loading && logPage.totalElements === 0) {
-    return <EmptyState message="No calls match. Send some through the gate, or clear the filters." onSimulate={onSimulate} disabled={simulating} />
+    return <EmptyState message="No records for this period. Send calls through the gate, or clear the filters." onSimulate={onSimulate} disabled={simulating} />
   }
 
   return (
@@ -174,7 +176,7 @@ function LogsTable({ logPage, page, filters, loading, onPageChange, onSimulate, 
             ))}
             {!loading && logs.length === 0 && (
               <tr>
-                <td colSpan={COLUMNS.length} className="no-matches">No calls on this page match the search.</td>
+                <td colSpan={COLUMNS.length} className="no-matches">No records on this page match the search.</td>
               </tr>
             )}
           </tbody>
