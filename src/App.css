@@ -1085,3 +1085,14 @@ pre {
   }
 }
 
+@media (min-width: 1280px) {
+  .app {
+    gap: var(--space-6);
+    padding-top: 32px;
+  }
+
+  .panel {
+    padding: var(--space-6);
+  }
+}
+
