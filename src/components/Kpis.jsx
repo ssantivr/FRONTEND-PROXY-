@@ -1,6 +1,6 @@
 import { RANGES, buildTrend, summarize } from '../stats'
 import { SERVICES } from '../services'
-import AnimatedNumber from './AnimatedNumber'
+import SplitFlap from './SplitFlap'
 import Icon from './Icons'
 
 const ERRORS_PERIOD = '24 h'
@@ -25,20 +25,22 @@ function Kpis({ trends, range }) {
   const period = RANGES.find((item) => item.id === range).label
   const current = summarize(trends?.logs ?? [])
   const previous = summarize(trends?.previousLogs ?? [])
+  const latency = current.p50 === null ? '--' : `${current.p50}/${current.p95}ms`
+  const success = current.successRate === null ? '--' : `${current.successRate.toFixed(1)}%`
 
   return (
     <dl className="kpis">
       <Kpi label={`Active services (${period})`} loading={loading} trend={buildTrend(current.activeServices, previous.activeServices, '', period)}>
-        <AnimatedNumber value={current.activeServices} /> / {SERVICES.length}
+        <SplitFlap value={`${current.activeServices}/${SERVICES.length}`} />
       </Kpi>
       <Kpi label={`Success rate (${period})`} loading={loading} trend={buildTrend(current.successRate, previous.successRate, ' pts', period)}>
-        {current.successRate === null ? '-' : <AnimatedNumber value={current.successRate} decimals={1} suffix="%" />}
+        <SplitFlap value={success} />
       </Kpi>
       <Kpi label="Latency p50 / p95" loading={loading} trend={buildTrend(current.p95, previous.p95, ' ms p95', period)}>
-        {current.p50 === null ? '-' : <><AnimatedNumber value={current.p50} /> / <AnimatedNumber value={current.p95} suffix=" ms" /></>}
+        <SplitFlap value={latency} />
       </Kpi>
       <Kpi label="Errors (24 h)" loading={loading} trend={buildTrend(trends?.errors ?? null, trends?.previousErrors ?? null, '', ERRORS_PERIOD)}>
-        <AnimatedNumber value={trends?.errors ?? 0} />
+        <SplitFlap value={String(trends?.errors ?? 0)} />
       </Kpi>
     </dl>
   )
