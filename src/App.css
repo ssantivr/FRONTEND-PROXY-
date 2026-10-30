@@ -433,3 +433,47 @@ button:disabled {
   font-size: var(--text-sm);
 }
 
+/* KPIs */
+
+.kpis {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.kpi {
+  display: grid;
+  gap: var(--space-1);
+  min-height: 112px;
+  padding: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.kpi dt {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.kpi-value {
+  font-family: var(--mono);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.trend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.trend .icon {
+  width: 14px;
+  height: 14px;
+}
+
