@@ -1,0 +1,176 @@
+/* Tokens. Green, amber and red are reserved for states. */
+:root {
+  color-scheme: light;
+  --page: #f4f2ec;
+  --surface: #fdfcf8;
+  --surface-raised: #ffffff;
+  --sunken: #ebe8df;
+  --line: #d9d5c9;
+  --text: #1d1c18;
+  --text-muted: #5f5c52;
+  --accent: #3d4fc4;
+  --on-accent: #ffffff;
+  --accent-soft: #e3e6fa;
+  --accent-strong: #2a3790;
+  --hazard-dark: #1d1c18;
+  --healthy: #15803d;
+  --healthy-soft: #dcf3e3;
+  --healthy-strong: #14532d;
+  --degraded: #b77c00;
+  --degraded-soft: #fbeecb;
+  --degraded-strong: #6f4b00;
+  --problem: #dc2626;
+  --problem-soft: #fde4e2;
+  --problem-strong: #8f1d1d;
+  --idle: #6b6a62;
+  --idle-soft: #e7e5de;
+  --idle-strong: #45443e;
+  --inventory: #0b78c2;
+  --orders: #7c4fd6;
+  --payments: #c2348f;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.75rem;
+  --radius: 4px;
+  --touch: 44px;
+  --fast: 200ms;
+  --display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+  --body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', Consolas, monospace;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --page: #131311;
+  --surface: #1b1b18;
+  --surface-raised: #262622;
+  --sunken: #101010;
+  --line: #3a3933;
+  --text: #f1efe7;
+  --text-muted: #b0ad9f;
+  --accent: #8aa2ff;
+  --on-accent: #12141f;
+  --accent-soft: #252c4f;
+  --accent-strong: #c9d3ff;
+  --hazard-dark: #0b0b0a;
+  --healthy: #4ade80;
+  --healthy-soft: #16351f;
+  --healthy-strong: #a7efc1;
+  --degraded: #f5b312;
+  --degraded-soft: #3e2f0a;
+  --degraded-strong: #fbdc8b;
+  --problem: #f87171;
+  --problem-soft: #431b1a;
+  --problem-strong: #fecaca;
+  --idle: #a8a598;
+  --idle-soft: #33322d;
+  --idle-strong: #dddacd;
+  --inventory: #5cb8f2;
+  --orders: #ae8cf5;
+  --payments: #ef7fc4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: var(--text-md);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, p, ul, dl, dd, figure {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--text-lg);
+}
+
+h2, h3 {
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+h2 {
+  font-family: var(--display);
+}
+
+h4 {
+  margin-bottom: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  z-index: 30;
+  padding: var(--space-3);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.note {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
