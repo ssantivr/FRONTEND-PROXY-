@@ -935,3 +935,38 @@ pre {
   animation: theme-reveal 0.25s ease-in-out;
 }
 
+@keyframes stripes-move {
+  to { background-position: 34px 0; }
+}
+
+@keyframes theme-reveal {
+  from { clip-path: circle(0 at var(--reveal-x) var(--reveal-y)); }
+  to { clip-path: circle(150% at var(--reveal-x) var(--reveal-y)); }
+}
+
+@keyframes wires-flow {
+  to { stroke-dashoffset: -11; }
+}
+
+@keyframes hit-flash {
+  from { opacity: 0.3; }
+  to { opacity: 0; }
+}
+
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+@keyframes row-in {
+  from { opacity: 0; }
+}
+
+@keyframes expand {
+  from { grid-template-rows: 0fr; opacity: 0; }
+  to { grid-template-rows: 1fr; opacity: 1; }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
