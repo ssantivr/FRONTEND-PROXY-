@@ -925,3 +925,13 @@ pre {
   animation: toast-in var(--fast) ease-out backwards;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: theme-reveal 0.25s ease-in-out;
+}
+
