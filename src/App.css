@@ -477,3 +477,27 @@ button:disabled {
   height: 14px;
 }
 
+/* Charts */
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.chart-figure figcaption {
+  margin-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.chart {
+  height: 256px;
+  font-size: var(--text-sm);
+}
+
+.skeleton-chart {
+  display: block;
+  height: 256px;
+}
+
