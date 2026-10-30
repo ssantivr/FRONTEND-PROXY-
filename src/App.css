@@ -1016,3 +1016,72 @@ pre {
   }
 }
 
+@media (min-width: 1024px) {
+  thead {
+    display: table-header-group;
+  }
+
+  .log-row {
+    display: table-row;
+    padding: 0;
+    border-top: 0;
+  }
+
+  .log-row:hover {
+    background: var(--sunken);
+  }
+
+  .log-row td {
+    display: table-cell;
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .log-row td::before {
+    content: none;
+  }
+
+  .details-row {
+    display: table-row;
+  }
+
+  .details-row td {
+    display: table-cell;
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  th {
+    padding: 0 var(--space-2);
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .expand-button {
+    margin-left: 0;
+    padding: 0 var(--space-1) 0 0;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .chart-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .map-layout {
+    grid-template-columns: minmax(0, 1fr) 400px;
+  }
+
+  .service-cards {
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
