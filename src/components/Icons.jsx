@@ -3,6 +3,7 @@ const PATHS = {
   warning: 'M12 4l9 16H3zM12 10v4M12 17v.5',
   cross: 'M6 6l12 12M18 6L6 18',
   minus: 'M6 12h12',
+  clock: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 3',
   up: 'M12 19V5M6 11l6-6 6 6',
   down: 'M12 5v14M6 13l6 6 6-6',
   copy: 'M9 9h10v10H9zM5 15V5h10',

@@ -11,6 +11,9 @@ export const ROUTES = {
   failed: { label: 'Failed', description: 'Error in the real service' },
 }
 
+export const STAMPS = { approved: 'Approved', delayed: 'Delayed', rejected: 'Rejected' }
+
+const DELAYED_CALL_MS = 70
 const DEGRADED_ERROR_RATE = 5
 const PROBLEM_ERROR_RATE = 15
 
@@ -21,9 +24,15 @@ export function getRoute(log) {
   return log.stackSummary?.includes('LoggingProxy.validateAccess') ? 'blocked' : 'failed'
 }
 
+// Decides the stamp of one call at the checkpoint
+export function getStamp(log) {
+  if (log.status === 'ERROR') return 'rejected'
+  return log.durationMs >= DELAYED_CALL_MS ? 'delayed' : 'approved'
+}
+
 export function getServiceHealth(metrics) {
   if (!metrics || metrics.totalCalls === 0) return { state: 'idle', label: 'No traffic' }
-  if (metrics.errorRate > PROBLEM_ERROR_RATE) return { state: 'problem', label: 'Service with problems' }
-  if (metrics.errorRate > DEGRADED_ERROR_RATE) return { state: 'degraded', label: 'Degraded' }
-  return { state: 'healthy', label: 'Healthy' }
+  if (metrics.errorRate > PROBLEM_ERROR_RATE) return { state: 'rejected', label: 'Service with problems' }
+  if (metrics.errorRate > DEGRADED_ERROR_RATE) return { state: 'delayed', label: 'Delayed' }
+  return { state: 'approved', label: 'Approved' }
 }
