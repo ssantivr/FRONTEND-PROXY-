@@ -7,8 +7,8 @@
     <meta name="description" content="Live dashboard for a Logging Proxy in front of three microservices: latency, success rate, errors and every intercepted call." />
     <link rel="canonical" href="https://proxy-checkpoint.vercel.app/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f0e6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e0d0b" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://proxy-checkpoint.vercel.app/" />
     <meta property="og:title" content="Checkpoint | Proxy observability" />
@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://proxy-checkpoint.vercel.app/og.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Instrument+Serif&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet" />
     <script>
       // Applies the theme before the first paint to avoid a flash
       (function () {
@@ -32,10 +32,10 @@
     </script>
     <style>
       /* First paint of the public text, replaced when React mounts */
-      html { background: #f4f2ec; color: #1d1c18; }
-      html[data-theme='dark'] { background: #131311; color: #f1efe7; }
-      .shell { max-width: 1216px; margin: 0 auto; padding: 88px 16px 0; font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif; }
-      .shell h1 { margin: 0; font-size: 1.75rem; line-height: 1.2; }
+      html { background: #f4f0e6; color: #1c1a15; }
+      html[data-theme='dark'] { background: #0e0d0b; color: #ede8dc; }
+      .shell { max-width: 1216px; margin: 0 auto; padding: 132px 16px 0; font-family: 'Bricolage Grotesque', 'Segoe UI', sans-serif; }
+      .shell h1 { margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
       .shell p { max-width: 60ch; margin: 8px 0 0; line-height: 1.5; }
     </style>
   </head>
