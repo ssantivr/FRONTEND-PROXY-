@@ -911,3 +911,17 @@ pre {
   font-size: var(--text-sm);
 }
 
+.toast {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 20;
+  max-width: calc(100vw - 32px);
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--text);
+  color: var(--page);
+  animation: toast-in var(--fast) ease-out backwards;
+}
+
