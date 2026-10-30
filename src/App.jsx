@@ -2,6 +2,8 @@ import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
 import { getLogs, getSummary, simulateLoad } from './api'
 import { SERVICES } from './services'
 import { RANGES } from './stats'
+import CheckpointTimeline from './components/CheckpointTimeline'
+import CrossingRegistry from './components/CrossingRegistry'
 import EmptyState from './components/EmptyState'
 import InterceptMap from './components/InterceptMap'
 import Kpis from './components/Kpis'
@@ -93,7 +95,7 @@ function App() {
       setLastUpdated(Date.now())
     } catch {
       if (requestNumber === lastRequest.current) {
-        setError('Backend unreachable. It may be waking up, which can take a minute.')
+        setError('Notice: control post unreachable. It may be waking up, which can take a minute.')
       }
     }
   }, [filters, page, range])
@@ -167,6 +169,12 @@ function App() {
               ))}
             </div>
           </div>
+          {trends !== null && (
+            <div className="crossing-grid">
+              <CheckpointTimeline trends={trends} rangeLabel={RANGES.find((item) => item.id === range).label} />
+              {trends.logs.length > 0 && <CrossingRegistry logsByService={recentLogs} />}
+            </div>
+          )}
           <Suspense fallback={<ChartFallback />}>
             {trends === null
               ? <ChartFallback />
@@ -182,7 +190,7 @@ function App() {
               ? <ChartFallback />
               : Object.values(recentLogs).some((logs) => logs.length > 0)
                 ? <ResponseTimeChart logsByService={recentLogs} />
-                : <EmptyState message="The last calls of each service appear here." onSimulate={handleSimulateLoad} disabled={simulating} />}
+                : <EmptyState message="No records for this period." onSimulate={handleSimulateLoad} disabled={simulating} />}
           </Suspense>
         </section>
 
