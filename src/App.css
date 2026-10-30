@@ -1096,3 +1096,13 @@ pre {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after, ::view-transition-new(root) {
+    animation: none !important;
+    transition: none !important;
+  }
+}
