@@ -174,3 +174,108 @@ h4 {
   stroke-linejoin: round;
 }
 
+/* Controls */
+
+button, select, input {
+  min-height: var(--touch);
+  color: var(--text);
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.primary {
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: filter var(--fast);
+}
+
+.primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.primary-busy:disabled {
+  opacity: 1;
+  background: repeating-linear-gradient(-45deg, var(--accent) 0 12px, color-mix(in srgb, var(--accent) 80%, var(--text)) 12px 24px);
+  background-size: 34px 34px;
+  animation: stripes-move 0.7s linear infinite;
+}
+
+.quiet {
+  padding: 0 var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  transition: background-color var(--fast);
+}
+
+.quiet:hover:not(:disabled), .icon-button:hover {
+  background: var(--sunken);
+}
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: var(--touch);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  transition: background-color var(--fast);
+}
+
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.segmented button {
+  padding: 0 var(--space-3);
+  border: 0;
+  background: transparent;
+  transition: background-color var(--fast), color var(--fast);
+}
+
+.segmented button + button {
+  border-left: 1px solid var(--line);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--page);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.field input, .field select {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  font-size: var(--text-md);
+}
+
+.field-grow {
+  flex: 1 1 100%;
+}
+
