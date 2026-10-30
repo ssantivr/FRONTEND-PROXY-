@@ -970,3 +970,28 @@ pre {
   from { opacity: 0; transform: translateY(8px); }
 }
 
+@media (min-width: 640px) {
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topbar-actions {
+    order: 0;
+    width: auto;
+    margin-left: auto;
+  }
+
+  .live {
+    margin-right: var(--space-2);
+  }
+
+  .menu-button {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .field-grow {
+    flex-basis: 240px;
+  }
+}
+
